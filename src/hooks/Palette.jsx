@@ -1,17 +1,29 @@
 import { useContext } from 'react';
 import { createContext } from 'react';
-import { createTheme } from '@mui/material/styles';
+import { createTheme, useTheme } from '@mui/material/styles';
+import { useMediaQuery } from '@mui/material';
 
 const themeContext = createContext();
 
-export const useTheme = () => {
+export const useMyTheme = () => {
   const context = useContext(themeContext);
   if (!context) throw new Error('There is not theme provider');
   return context;
 };
 
 export const MyThemeProvider = ({ children }) => {
-  const theme = createTheme({
+  const defaultTheme = useTheme();
+  const desktop = useMediaQuery(defaultTheme.breakpoints.up('md'));
+  const tablet = useMediaQuery(defaultTheme.breakpoints.up('sm'));
+  const mobile = useMediaQuery(defaultTheme.breakpoints.up('xs'));
+
+  const getButtonSize = () => {
+    if (desktop) return 'large';
+    if (tablet) return 'medium';
+    if (mobile) return 'small';
+  };
+
+  const myTheme = createTheme({
     palette: {
       primary: {
         light: '#4dabf5',
@@ -28,7 +40,18 @@ export const MyThemeProvider = ({ children }) => {
     },
   });
 
+  const myFont = {
+    title: { lg: 48, xs: 24 },
+    subtitle: { lg: 20, xs: 14 },
+    body: { lg: 16, xs: 12 },
+    icon: { lg: 30, xs: 20 },
+    logo: { lg: 48, xs: 30 },
+    button: getButtonSize(),
+  };
+
   return (
-    <themeContext.Provider value={{ theme }}>{children}</themeContext.Provider>
+    <themeContext.Provider value={{ myTheme, myFont }}>
+      {children}
+    </themeContext.Provider>
   );
 };
