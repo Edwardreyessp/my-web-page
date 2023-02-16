@@ -13,6 +13,7 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import persona from './assets/persona.png';
 import { useMyTheme } from './hooks/Palette';
+import { useTranslation } from 'react-i18next';
 
 const Home = () => {
   const { myTheme } = useMyTheme();
@@ -35,6 +36,7 @@ const MainPage = () => {
   const { myTheme, myFont } = useMyTheme();
   const defaultTheme = useTheme();
   const mobile = useMediaQuery(defaultTheme.breakpoints.down('sm'));
+  const [t] = useTranslation('global');
 
   return (
     <Box
@@ -105,7 +107,7 @@ const MainPage = () => {
                   fontWeight: 'bold',
                 }}
               >
-                ¡Hola, Soy Edward Reyes!
+                {t('header.title')}
               </Typography>
               <Typography
                 color='secondary'
@@ -116,19 +118,14 @@ const MainPage = () => {
                   mb: '40px',
                 }}
               >
-                Desarrollador web y aplicaciones móviles
+                {t('header.subtitle')}
               </Typography>
               <Typography
                 color='primary.contrastText'
                 textAlign={mobile && 'center'}
                 sx={{ fontSize: myFont.body, mb: '20px' }}
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Maecenas cursus non dolor vel hendrerit. Curabitur sit amet
-                dolor placerat, porta odio ut, sollicitudin ligula. Maecenas
-                erat nisi, dapibus bibendum orci sit amet, sodales ornare enim.
-                Etiam pellentesque lobortis nulla, vitae malesuada lectus porta
-                et.
+                {t('header.body')}
               </Typography>
               <Box
                 display='flex'
@@ -140,14 +137,14 @@ const MainPage = () => {
                   color='secondary'
                   size={myFont.button}
                 >
-                  Contáctame
+                  {t('header.button-contact')}
                 </Button>
                 <Button
                   variant='outlined'
                   color='secondary'
                   size={myFont.button}
                 >
-                  Mis proyectos
+                  {t('header.button-projects')}
                 </Button>
               </Box>
             </Stack>
