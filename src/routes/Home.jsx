@@ -58,6 +58,7 @@ const MainPage = () => {
                 icon={faGithub}
                 fontSize={mobile ? '20px' : '30px'}
                 color={myTheme.palette.primary.contrastText}
+                cursor='pointer'
               />
             </Box>
             <StyledIcon icon='email' color='primary.contrastText' />

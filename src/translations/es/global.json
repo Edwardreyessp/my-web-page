@@ -8,5 +8,11 @@
   },
   "home": {
     "title1": "Mis proyectos destacados"
+  },
+  "navbar": {
+    "home": "Inicio",
+    "about": "Sobre mí",
+    "projects": "Mis proyectos",
+    "contact": "Contáctame"
   }
 }

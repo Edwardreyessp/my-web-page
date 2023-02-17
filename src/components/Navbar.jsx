@@ -1,13 +1,11 @@
 import {
   Box,
-  Button,
   Divider,
   Drawer,
   List,
   ListItem,
   ListItemButton,
   ListItemIcon,
-  ListItemText,
   Menu,
   MenuItem,
   ThemeProvider,
@@ -17,8 +15,7 @@ import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { US, MX } from 'country-flag-icons/react/3x2';
 import { StyledIcon } from './utils/StyledIcon';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import { StyledText } from './utils/StyledText';
 
 const Navbar = () => {
   const { myTheme } = useMyTheme();
@@ -161,6 +158,13 @@ const Navbar = () => {
 };
 
 const ListDrawer = ({ toggleDrawer }) => {
+  const menuItems = [
+    { text: 'navbar.home', icon: 'home' },
+    { text: 'navbar.projects', icon: 'work' },
+    { text: 'navbar.contact', icon: 'contact' },
+    { text: 'navbar.about', icon: 'about' },
+  ];
+
   return (
     <Box
       sx={{ width: 250 }}
@@ -168,22 +172,30 @@ const ListDrawer = ({ toggleDrawer }) => {
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
     >
-      <Box p={1}>
+      <Box
+        p={1}
+        display='flex'
+        justifyContent='space-between'
+        alignItems='center'
+      >
         <StyledIcon icon='logo' color='primary.main' />
+        <StyledIcon icon='close' />
       </Box>
       <List>
-        {['Inicio', 'Mis proyectos', 'Contáctame', 'Sobre mí'].map(
-          (text, index) => (
-            <Box key={text}>
-              <ListItem disablePadding>
-                <ListItemButton>
-                  <ListItemText primary={text} />
-                </ListItemButton>
-              </ListItem>
-              <Divider />
-            </Box>
-          )
-        )}
+        <Divider />
+        {menuItems.map((item, index) => (
+          <Box key={index}>
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <StyledIcon icon={item.icon} />
+                </ListItemIcon>
+                <StyledText value={item.text} />
+              </ListItemButton>
+            </ListItem>
+            <Divider />
+          </Box>
+        ))}
       </List>
     </Box>
   );

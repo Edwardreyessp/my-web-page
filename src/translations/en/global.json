@@ -8,5 +8,11 @@
   },
   "home": {
     "title1": "My featured projects"
+  },
+  "navbar": {
+    "home": "Home",
+    "about": "About me",
+    "projects": "My projects",
+    "contact": "Contact me"
   }
 }
