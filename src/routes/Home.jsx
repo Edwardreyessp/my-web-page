@@ -6,14 +6,13 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import persona from '../assets/persona.png';
 import { useMyTheme } from '../hooks/Palette';
-import { StyledButton } from '../components/utils/StyledButton';
 import { StyledText } from '../components/utils/StyledText';
 import { StyledIcon } from '../components/utils/StyledIcon';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { StyledButton } from '../components/utils/StyledButton';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Home = () => {
   const { myTheme } = useMyTheme();
@@ -31,7 +30,7 @@ const Home = () => {
 };
 
 const MainPage = () => {
-  const { myTheme, myFont } = useMyTheme();
+  const { myTheme } = useMyTheme();
   const defaultTheme = useTheme();
   const mobile = useMediaQuery(defaultTheme.breakpoints.down('sm'));
 

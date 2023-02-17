@@ -1,9 +1,24 @@
-import { Box, Menu, MenuItem, ThemeProvider } from '@mui/material';
+import {
+  Box,
+  Button,
+  Divider,
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Menu,
+  MenuItem,
+  ThemeProvider,
+} from '@mui/material';
 import { useMyTheme } from '../hooks/Palette';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { US, MX } from 'country-flag-icons/react/3x2';
 import { StyledIcon } from './utils/StyledIcon';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import MailIcon from '@mui/icons-material/Mail';
 
 const Navbar = () => {
   const { myTheme } = useMyTheme();
@@ -16,6 +31,18 @@ const Navbar = () => {
     width: '100%',
     zIndex: 1,
   });
+  const [openDrawer, setOpenDrawer] = useState(false);
+
+  const toggleDrawer = open => event => {
+    if (
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
+    ) {
+      return;
+    }
+
+    setOpenDrawer(open);
+  };
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -76,8 +103,15 @@ const Navbar = () => {
             <StyledIcon
               icon='menu'
               color='primary.contrastText'
-              onClick={() => {}}
+              onClick={toggleDrawer(true)}
             />
+            <Drawer
+              anchor='right'
+              open={openDrawer}
+              onClose={toggleDrawer(false)}
+            >
+              <ListDrawer toggleDrawer={toggleDrawer} />
+            </Drawer>
           </Box>
         </Box>
       </Box>
@@ -123,6 +157,35 @@ const Navbar = () => {
         </MenuItem>
       </Menu>
     </ThemeProvider>
+  );
+};
+
+const ListDrawer = ({ toggleDrawer }) => {
+  return (
+    <Box
+      sx={{ width: 250 }}
+      role='presentation'
+      onClick={toggleDrawer(false)}
+      onKeyDown={toggleDrawer(false)}
+    >
+      <Box p={1}>
+        <StyledIcon icon='logo' color='primary.main' />
+      </Box>
+      <List>
+        {['Inicio', 'Mis proyectos', 'Contáctame', 'Sobre mí'].map(
+          (text, index) => (
+            <Box key={text}>
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemText primary={text} />
+                </ListItemButton>
+              </ListItem>
+              <Divider />
+            </Box>
+          )
+        )}
+      </List>
+    </Box>
   );
 };
 
