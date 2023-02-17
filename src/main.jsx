@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './Home';
+import Home from './routes/Home';
 import Navbar from './components/Navbar';
 import './main.css';
 import '@fontsource/roboto/300.css';

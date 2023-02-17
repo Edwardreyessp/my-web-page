@@ -11,9 +11,10 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
-import persona from './assets/persona.png';
-import { useMyTheme } from './hooks/Palette';
+import persona from '../assets/persona.png';
+import { useMyTheme } from '../hooks/Palette';
 import { useTranslation } from 'react-i18next';
+import { SecondaryButton } from '../components/utils/StyledButton';
 
 const Home = () => {
   const { myTheme } = useMyTheme();
@@ -132,13 +133,7 @@ const MainPage = () => {
                 justifyContent={mobile && 'space-around'}
                 gap={'20px'}
               >
-                <Button
-                  variant='contained'
-                  color='secondary'
-                  size={myFont.button}
-                >
-                  {t('header.button-contact')}
-                </Button>
+                <SecondaryButton value={t('header.button-contact')} />
                 <Button
                   variant='outlined'
                   color='secondary'
