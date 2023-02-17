@@ -14,7 +14,8 @@ import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import persona from '../assets/persona.png';
 import { useMyTheme } from '../hooks/Palette';
 import { useTranslation } from 'react-i18next';
-import { SecondaryButton } from '../components/utils/StyledButton';
+import { StyledButton } from '../components/utils/StyledButton';
+import { StyledText } from '../components/utils/StyledText';
 
 const Home = () => {
   const { myTheme } = useMyTheme();
@@ -100,47 +101,34 @@ const MainPage = () => {
           </Grid>
           <Grid item xs={1} sm={6} container alignItems='center'>
             <Stack justifyContent={mobile && 'center'}>
-              <Typography
+              <StyledText
+                value='header.title'
+                type='h1'
                 color='primary.contrastText'
-                textAlign={mobile && 'center'}
-                sx={{
-                  fontSize: myFont.title,
-                  fontWeight: 'bold',
-                }}
-              >
-                {t('header.title')}
-              </Typography>
-              <Typography
+              />
+              <StyledText
+                value='header.subtitle'
+                type='h2'
                 color='secondary'
-                textAlign={mobile && 'center'}
-                sx={{
-                  fontSize: myFont.subtitle,
-                  fontWeight: 'bold',
-                  mb: '40px',
-                }}
-              >
-                {t('header.subtitle')}
-              </Typography>
-              <Typography
+                mb='40px'
+              />
+              <StyledText
+                value='header.body'
+                type='h3'
                 color='primary.contrastText'
-                textAlign={mobile && 'center'}
-                sx={{ fontSize: myFont.body, mb: '20px' }}
-              >
-                {t('header.body')}
-              </Typography>
+                mb='20px'
+              />
               <Box
                 display='flex'
                 justifyContent={mobile && 'space-around'}
                 gap={'20px'}
               >
-                <SecondaryButton value={t('header.button-contact')} />
-                <Button
+                <StyledButton value='header.button-contact' color='secondary' />
+                <StyledButton
+                  value='header.button-projects'
                   variant='outlined'
                   color='secondary'
-                  size={myFont.button}
-                >
-                  {t('header.button-projects')}
-                </Button>
+                />
               </Box>
             </Stack>
           </Grid>
