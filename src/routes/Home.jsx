@@ -1,10 +1,8 @@
 import {
   Box,
-  Button,
   Grid,
   Stack,
   ThemeProvider,
-  Typography,
   useMediaQuery,
   useTheme,
 } from '@mui/material';
@@ -13,9 +11,9 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import persona from '../assets/persona.png';
 import { useMyTheme } from '../hooks/Palette';
-import { useTranslation } from 'react-i18next';
 import { StyledButton } from '../components/utils/StyledButton';
 import { StyledText } from '../components/utils/StyledText';
+import { StyledIcon } from '../components/utils/StyledIcon';
 
 const Home = () => {
   const { myTheme } = useMyTheme();
@@ -25,9 +23,7 @@ const Home = () => {
       <MainPage />
       <Box p={'90px'}>
         <Box className='main-projects'>
-          <Typography variant='h5' sx={{ fontWeight: 'bold' }}>
-            Mis proyectos más destacados
-          </Typography>
+          <StyledText type='h2' value={'home.title1'}></StyledText>
         </Box>
       </Box>
     </ThemeProvider>
@@ -38,7 +34,6 @@ const MainPage = () => {
   const { myTheme, myFont } = useMyTheme();
   const defaultTheme = useTheme();
   const mobile = useMediaQuery(defaultTheme.breakpoints.down('sm'));
-  const [t] = useTranslation('global');
 
   return (
     <Box
@@ -66,12 +61,7 @@ const MainPage = () => {
                 color={myTheme.palette.primary.contrastText}
               />
             </Box>
-            <EmailOutlinedIcon
-              sx={{
-                fontSize: myFont.icon,
-                color: 'primary.contrastText',
-              }}
-            />
+            <StyledIcon icon='email' color='primary.contrastText' />
           </Stack>
         </Grid>
         <Grid

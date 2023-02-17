@@ -1,28 +1,21 @@
-import {
-  Box,
-  IconButton,
-  Menu,
-  MenuItem,
-  ThemeProvider,
-  useMediaQuery,
-  useTheme,
-} from '@mui/material';
-import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
-import AnchorOutlinedIcon from '@mui/icons-material/AnchorOutlined';
-import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
-import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
-import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
+import { Box, Menu, MenuItem, ThemeProvider } from '@mui/material';
 import { useMyTheme } from '../hooks/Palette';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { US, MX } from 'country-flag-icons/react/3x2';
+import { StyledIcon } from './utils/StyledIcon';
 
 const Navbar = () => {
-  const { myTheme, myFont } = useMyTheme();
+  const { myTheme } = useMyTheme();
   const [j, i18n] = useTranslation('global');
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const [darkTheme, setDarkTheme] = useState(false);
+  const [navbarSyle, setNavbarSyle] = useState({
+    position: 'fixed',
+    width: '100%',
+    zIndex: 1,
+  });
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -41,43 +34,50 @@ const Navbar = () => {
     handleClose();
   };
 
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 0) {
+      setNavbarSyle({
+        ...navbarSyle,
+        background:
+          'linear-gradient(to right, #113b58, #144d71, #155f8a, #1473a4, #0c87bf)',
+        boxShadow: '5px 0px 27px -5px rgba(0, 0, 0, 0.3)',
+      });
+    } else {
+      setNavbarSyle({
+        ...navbarSyle,
+        background: 'transparent',
+        boxShadow: 'none',
+      });
+    }
+  });
+
   return (
     <ThemeProvider theme={myTheme}>
-      <Box sx={{ position: 'fixed', width: '100%' }}>
+      <Box sx={navbarSyle}>
         <Box
-          sx={{ display: 'flex', justifyContent: 'space-between', p: '30px' }}
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            p: '20px 30px',
+          }}
         >
-          <AnchorOutlinedIcon
-            sx={{
-              fontSize: myFont.logo,
-              color: 'primary.contrastText',
-            }}
-          />
+          <StyledIcon icon='logo' color='primary.contrastText' />
           <Box display='flex' gap='10px' alignItems='center'>
-            <IconButton onClick={handleClick}>
-              <LanguageOutlinedIcon
-                sx={{ fontSize: myFont.icon, color: 'primary.contrastText' }}
-              />
-            </IconButton>
-            <IconButton onClick={handleTheme}>
-              {darkTheme ? (
-                <DarkModeOutlinedIcon
-                  sx={{ fontSize: myFont.icon, color: 'primary.contrastText' }}
-                />
-              ) : (
-                <LightModeOutlinedIcon
-                  sx={{ fontSize: myFont.icon, color: 'primary.contrastText' }}
-                />
-              )}
-            </IconButton>
-            <IconButton>
-              <MenuRoundedIcon
-                sx={{
-                  fontSize: myFont.icon,
-                  color: 'primary.contrastText',
-                }}
-              />
-            </IconButton>
+            <StyledIcon
+              icon='language'
+              color='primary.contrastText'
+              onClick={handleClick}
+            />
+            <StyledIcon
+              icon={darkTheme ? 'dark' : 'light'}
+              onClick={handleTheme}
+              color='primary.contrastText'
+            />
+            <StyledIcon
+              icon='menu'
+              color='primary.contrastText'
+              onClick={() => {}}
+            />
           </Box>
         </Box>
       </Box>
