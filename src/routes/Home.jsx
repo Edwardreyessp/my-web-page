@@ -15,6 +15,7 @@ const Home = () => {
         <Box className='main-projects'>
           <StyledText type='h2' value={'home.title1'} color='text.primary' />
           <Carousel mobile={mobile} />
+          <Box height={'5000px'} />
         </Box>
       </Box>
     </ThemeProvider>

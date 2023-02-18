@@ -61,7 +61,7 @@ const Navbar = () => {
     if (window.scrollY > 0) {
       setNavbarSyle({
         ...navbarSyle,
-        background: 'background.paper',
+        background: myTheme.palette.background.paper,
         boxShadow: '5px 0px 27px -5px rgba(0, 0, 0, 0.3)',
       });
     } else {
