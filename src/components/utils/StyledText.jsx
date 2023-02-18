@@ -1,6 +1,6 @@
-import { Typography, useMediaQuery, useTheme } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useMyTheme } from '../../hooks/Palette';
+import { Typography, useMediaQuery, useTheme } from '@mui/material';
 
 export const StyledText = ({ value, type = 'h3', color, mb }) => {
   const mobile = useMediaQuery(useTheme().breakpoints.down('sm'));

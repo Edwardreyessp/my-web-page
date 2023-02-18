@@ -1,16 +1,16 @@
 import { IconButton } from '@mui/material';
 import { useMyTheme } from '../../hooks/Palette';
+import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+import MailRoundedIcon from '@mui/icons-material/MailRounded';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import AnchorOutlinedIcon from '@mui/icons-material/AnchorOutlined';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import WorkHistoryRoundedIcon from '@mui/icons-material/WorkHistoryRounded';
-import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import ImportContactsRoundedIcon from '@mui/icons-material/ImportContactsRounded';
-import MailRoundedIcon from '@mui/icons-material/MailRounded';
-import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 
 export const StyledIcon = ({ icon = 'menu', color, onClick }) => {
   const { myFont } = useMyTheme();

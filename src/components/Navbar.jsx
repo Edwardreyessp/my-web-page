@@ -10,19 +10,18 @@ import {
   MenuItem,
   ThemeProvider,
 } from '@mui/material';
+import { useState } from 'react';
 import { useMyTheme } from '../hooks/Palette';
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
-import { US, MX } from 'country-flag-icons/react/3x2';
 import { StyledIcon } from './utils/StyledIcon';
 import { StyledText } from './utils/StyledText';
+import { US, MX } from 'country-flag-icons/react/3x2';
 
 const Navbar = () => {
-  const { myTheme } = useMyTheme();
+  const { myTheme, setDarkTheme, darkTheme } = useMyTheme();
   const [j, i18n] = useTranslation('global');
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  const [darkTheme, setDarkTheme] = useState(false);
   const [navbarSyle, setNavbarSyle] = useState({
     position: 'fixed',
     width: '100%',
@@ -62,8 +61,7 @@ const Navbar = () => {
     if (window.scrollY > 0) {
       setNavbarSyle({
         ...navbarSyle,
-        background:
-          'linear-gradient(to right, #113b58, #144d71, #155f8a, #1473a4, #0c87bf)',
+        background: 'background.paper',
         boxShadow: '5px 0px 27px -5px rgba(0, 0, 0, 0.3)',
       });
     } else {
