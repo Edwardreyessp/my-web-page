@@ -27,6 +27,8 @@
     "react-dom": "^18.2.0",
     "react-i18next": "^12.1.5",
     "react-router-dom": "6",
+    "react-spring": "^9.6.1",
+    "react-spring-carousel": "^2.0.19",
     "styled-components": "^5.3.6"
   },
   "devDependencies": {

@@ -10,7 +10,9 @@ import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import WorkHistoryRoundedIcon from '@mui/icons-material/WorkHistoryRounded';
+import NavigateNextRoundedIcon from '@mui/icons-material/NavigateNextRounded';
 import ImportContactsRoundedIcon from '@mui/icons-material/ImportContactsRounded';
+import NavigateBeforeRoundedIcon from '@mui/icons-material/NavigateBeforeRounded';
 
 export const StyledIcon = ({ icon = 'menu', color, onClick }) => {
   const { myFont } = useMyTheme();
@@ -32,6 +34,8 @@ export const StyledIcon = ({ icon = 'menu', color, onClick }) => {
     if (icon === 'about') return <ImportContactsRoundedIcon sx={styleIcon} />;
     if (icon === 'contact') return <MailRoundedIcon sx={styleIcon} />;
     if (icon === 'close') return <CloseRoundedIcon sx={styleIcon} />;
+    if (icon === 'next') return <NavigateNextRoundedIcon sx={styleIcon} />;
+    if (icon === 'prev') return <NavigateBeforeRoundedIcon sx={styleIcon} />;
   };
 
   if (onClick) {
