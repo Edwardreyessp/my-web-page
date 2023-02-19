@@ -123,7 +123,7 @@ const CarouselItem = ({ item, currentSlide, mobile }) => {
         p: '6%',
       }}
     >
-      <CardContent sx={{}}>
+      <CardContent>
         <StyledText text={item.title} type='h4' weight='bold' />
         <StyledText
           type='h5'
