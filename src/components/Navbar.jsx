@@ -1,28 +1,44 @@
 import {
   Box,
-  IconButton,
+  Divider,
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
   Menu,
   MenuItem,
   ThemeProvider,
-  useMediaQuery,
-  useTheme,
 } from '@mui/material';
-import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
-import AnchorOutlinedIcon from '@mui/icons-material/AnchorOutlined';
-import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
-import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
-import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
+import { useState } from 'react';
 import { useMyTheme } from '../hooks/Palette';
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
+import { StyledIcon } from './utils/StyledIcon';
+import { StyledText } from './utils/StyledText';
 import { US, MX } from 'country-flag-icons/react/3x2';
 
 const Navbar = () => {
-  const { myTheme, myFont } = useMyTheme();
+  const { myTheme, setDarkTheme, darkTheme } = useMyTheme();
   const [j, i18n] = useTranslation('global');
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  const [darkTheme, setDarkTheme] = useState(false);
+  const [navbarSyle, setNavbarSyle] = useState({
+    position: 'fixed',
+    width: '100%',
+    zIndex: 2,
+  });
+  const [openDrawer, setOpenDrawer] = useState(false);
+
+  const toggleDrawer = open => event => {
+    if (
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
+    ) {
+      return;
+    }
+
+    setOpenDrawer(open);
+  };
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -41,43 +57,56 @@ const Navbar = () => {
     handleClose();
   };
 
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 0) {
+      setNavbarSyle({
+        ...navbarSyle,
+        background: myTheme.palette.background.default,
+        boxShadow: '5px 0px 27px -5px rgba(0, 0, 0, 0.3)',
+      });
+    } else {
+      setNavbarSyle({
+        ...navbarSyle,
+        background: 'transparent',
+        boxShadow: 'none',
+      });
+    }
+  });
+
   return (
     <ThemeProvider theme={myTheme}>
-      <Box sx={{ position: 'fixed', width: '100%' }}>
+      <Box sx={navbarSyle}>
         <Box
-          sx={{ display: 'flex', justifyContent: 'space-between', p: '30px' }}
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            p: '20px 30px',
+          }}
         >
-          <AnchorOutlinedIcon
-            sx={{
-              fontSize: myFont.logo,
-              color: 'primary.contrastText',
-            }}
-          />
+          <StyledIcon icon='logo' color='primary.contrastText' />
           <Box display='flex' gap='10px' alignItems='center'>
-            <IconButton onClick={handleClick}>
-              <LanguageOutlinedIcon
-                sx={{ fontSize: myFont.icon, color: 'primary.contrastText' }}
-              />
-            </IconButton>
-            <IconButton onClick={handleTheme}>
-              {darkTheme ? (
-                <DarkModeOutlinedIcon
-                  sx={{ fontSize: myFont.icon, color: 'primary.contrastText' }}
-                />
-              ) : (
-                <LightModeOutlinedIcon
-                  sx={{ fontSize: myFont.icon, color: 'primary.contrastText' }}
-                />
-              )}
-            </IconButton>
-            <IconButton>
-              <MenuRoundedIcon
-                sx={{
-                  fontSize: myFont.icon,
-                  color: 'primary.contrastText',
-                }}
-              />
-            </IconButton>
+            <StyledIcon
+              icon='language'
+              color='primary.contrastText'
+              onClick={handleClick}
+            />
+            <StyledIcon
+              icon={darkTheme ? 'dark' : 'light'}
+              onClick={handleTheme}
+              color='primary.contrastText'
+            />
+            <StyledIcon
+              icon='menu'
+              color='primary.contrastText'
+              onClick={toggleDrawer(true)}
+            />
+            <Drawer
+              anchor='right'
+              open={openDrawer}
+              onClose={toggleDrawer(false)}
+            >
+              <ListDrawer toggleDrawer={toggleDrawer} />
+            </Drawer>
           </Box>
         </Box>
       </Box>
@@ -123,6 +152,50 @@ const Navbar = () => {
         </MenuItem>
       </Menu>
     </ThemeProvider>
+  );
+};
+
+const ListDrawer = ({ toggleDrawer }) => {
+  const menuItems = [
+    { text: 'navbar.home', icon: 'home' },
+    { text: 'navbar.projects', icon: 'work' },
+    { text: 'navbar.contact', icon: 'contact' },
+    { text: 'navbar.about', icon: 'about' },
+  ];
+
+  return (
+    <Box
+      sx={{ width: 250 }}
+      role='presentation'
+      onClick={toggleDrawer(false)}
+      onKeyDown={toggleDrawer(false)}
+    >
+      <Box
+        p={1}
+        display='flex'
+        justifyContent='space-between'
+        alignItems='center'
+      >
+        <StyledIcon icon='logo' color='primary.main' />
+        <StyledIcon icon='close' />
+      </Box>
+      <List>
+        <Divider />
+        {menuItems.map((item, index) => (
+          <Box key={index}>
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <StyledIcon icon={item.icon} />
+                </ListItemIcon>
+                <StyledText value={item.text} />
+              </ListItemButton>
+            </ListItem>
+            <Divider />
+          </Box>
+        ))}
+      </List>
+    </Box>
   );
 };
 
