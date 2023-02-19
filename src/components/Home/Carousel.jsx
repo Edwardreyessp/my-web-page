@@ -49,7 +49,7 @@ const Carousel = ({ mobile }) => {
               aspectRatio: mobile ? '0.4' : '2',
               display: 'grid',
               placeItems: 'center',
-              zIndex: currentSlide === item.id && 10,
+              zIndex: currentSlide === item.id && 1,
               transition: 'all 0.7s',
               transform: currentSlide === item.id && 'scale(1.5)',
               background:

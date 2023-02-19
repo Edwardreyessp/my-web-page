@@ -25,7 +25,7 @@ const Navbar = () => {
   const [navbarSyle, setNavbarSyle] = useState({
     position: 'fixed',
     width: '100%',
-    zIndex: 1,
+    zIndex: 2,
   });
   const [openDrawer, setOpenDrawer] = useState(false);
 
@@ -156,7 +156,6 @@ const Navbar = () => {
 };
 
 const ListDrawer = ({ toggleDrawer }) => {
-  const { myTheme } = useMyTheme();
   const menuItems = [
     { text: 'navbar.home', icon: 'home' },
     { text: 'navbar.projects', icon: 'work' },
