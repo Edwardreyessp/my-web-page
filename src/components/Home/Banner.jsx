@@ -17,7 +17,7 @@ const Banner = () => {
       height='100vh'
       maxHeight='calc(100vh - 108px)'
       p='108px 30px 0 30px'
-      sx={{ background: myTheme.palette.background.paper }}
+      sx={{ background: myTheme.palette.background.default }}
     >
       <Grid container height='100%'>
         <Grid
@@ -51,7 +51,7 @@ const Banner = () => {
                 width: '800px',
                 maxWidth: '100%',
                 marginBottom: mobile && '14px',
-                filter: darkTheme && 'grayscale(100%)',
+                filter: darkTheme ? 'grayscale(100%)' : 'hue-rotate(0deg)',
               }}
             />
           </Grid>
@@ -86,13 +86,13 @@ const BannerDescription = ({ mobile }) => {
       <StyledText value='header.title' type='h1' color='primary.contrastText' />
       <StyledText
         value='header.subtitle'
-        type='h2'
+        type='h3'
         color='secondary'
         mb='40px'
       />
       <StyledText
         value='header.body'
-        type='h3'
+        type='h4'
         color='primary.contrastText'
         mb='20px'
       />

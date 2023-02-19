@@ -7,7 +7,22 @@
     "button-projects": "My projects"
   },
   "home": {
-    "title1": "My featured projects"
+    "title1": "My featured projects",
+    "projects": {
+      "apperro": {
+        "title": "Apperro",
+        "description": "Mobile application for monitoring food, health and hygiene in dogs."
+      },
+      "project2": {
+        "title": "Sistema de gestión de inventario",
+        "description": "Sistema de gestión de inventario para una empresa de venta de productos de limpieza."
+      },
+      "project3": {
+        "title": "Sistema de gestión de inventario",
+        "description": "Sistema de gestión de inventario para una empresa de venta de productos de limpieza."
+      },
+      "button": "Know them all"
+    }
   },
   "navbar": {
     "home": "Home",

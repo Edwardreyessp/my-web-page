@@ -61,7 +61,7 @@ const Navbar = () => {
     if (window.scrollY > 0) {
       setNavbarSyle({
         ...navbarSyle,
-        background: myTheme.palette.background.paper,
+        background: myTheme.palette.background.default,
         boxShadow: '5px 0px 27px -5px rgba(0, 0, 0, 0.3)',
       });
     } else {
@@ -156,6 +156,7 @@ const Navbar = () => {
 };
 
 const ListDrawer = ({ toggleDrawer }) => {
+  const { myTheme } = useMyTheme();
   const menuItems = [
     { text: 'navbar.home', icon: 'home' },
     { text: 'navbar.projects', icon: 'work' },

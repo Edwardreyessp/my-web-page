@@ -42,10 +42,10 @@ export const MyThemeProvider = ({ children }) => {
             contrastText: '#50390a',
           },
           background: {
-            default: '#1b2831',
-            default2: '#192229',
-            paper:
+            default:
               'linear-gradient(to right, #0a1f2e, #0d2e42, #0f3d58, #0e4d6e, #085e85)',
+            paper: '#1b2831',
+            paper2: '#192229',
           },
         },
       });
@@ -72,9 +72,9 @@ export const MyThemeProvider = ({ children }) => {
             contrastText: '#fff',
           },
           background: {
-            default: '#fff',
-            paper:
+            default:
               'linear-gradient(to right, #113b58, #144d71, #155f8a, #1473a4, #0c87bf)',
+            paper: '#fff',
           },
         },
       });
@@ -85,8 +85,10 @@ export const MyThemeProvider = ({ children }) => {
 
   const myFont = {
     title: { lg: 48, xs: 24 },
-    subtitle: { lg: 20, xs: 14 },
+    subtitle: { lg: 32, xs: 20 },
+    subtitle2: { lg: 20, xs: 14 },
     body: { lg: 16, xs: 12 },
+    body2: { lg: 14, xs: 10 },
     icon: { lg: 30, xs: 20 },
     logo: { lg: 48, xs: 30 },
     button: getButtonSize(),
