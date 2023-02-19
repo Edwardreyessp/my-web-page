@@ -1,14 +1,14 @@
 {
-  "header": {
-    "title": "Hello, I'm Edward Reyes!",
-    "subtitle": "Web developer and mobile applications",
-    "body": "I am a software developer with experience developing web and mobile applications. I like to work in a team and learn new things. I like coffee and chocolate.",
-    "button-contact": "Contact me",
-    "button-projects": "My projects"
-  },
   "home": {
-    "title1": "My featured projects",
+    "banner": {
+      "title": "Hello, I'm Edward Reyes!",
+      "subtitle": "Web developer and mobile applications",
+      "body": "I am a software developer with experience developing web and mobile applications. I like to work in a team and learn new things. I like coffee and chocolate.",
+      "button-contact": "Contact me",
+      "button-projects": "My projects"
+    },
     "projects": {
+      "title": "My featured projects",
       "apperro": {
         "title": "Apperro",
         "description": "Mobile application for monitoring food, health and hygiene in dogs."

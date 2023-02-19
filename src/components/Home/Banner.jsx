@@ -83,15 +83,19 @@ const BannerSocial = ({ myTheme, mobile }) => {
 const BannerDescription = ({ mobile }) => {
   return (
     <Stack justifyContent={mobile && 'center'}>
-      <StyledText value='header.title' type='h1' color='primary.contrastText' />
       <StyledText
-        value='header.subtitle'
+        value='home.banner.title'
+        type='h1'
+        color='primary.contrastText'
+      />
+      <StyledText
+        value='home.banner.subtitle'
         type='h3'
         color='secondary'
         mb='40px'
       />
       <StyledText
-        value='header.body'
+        value='home.banner.body'
         type='h4'
         color='primary.contrastText'
         mb='20px'
@@ -104,9 +108,9 @@ const BannerDescription = ({ mobile }) => {
 const BannerButtons = ({ mobile }) => {
   return (
     <Box display='flex' justifyContent={mobile && 'space-around'} gap='20px'>
-      <StyledButton value='header.button-contact' color='secondary' />
+      <StyledButton value='home.banner.button-contact' color='secondary' />
       <StyledButton
-        value='header.button-projects'
+        value='home.banner.button-projects'
         variant='outlined'
         color='secondary'
       />

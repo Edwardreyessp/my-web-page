@@ -46,7 +46,7 @@ const Carousel = ({ mobile }) => {
             sx={{
               width: '100%',
               minWidth: '92px',
-              aspectRatio: mobile ? '0.5' : '2',
+              aspectRatio: mobile ? '0.4' : '2',
               display: 'grid',
               placeItems: 'center',
               zIndex: currentSlide === item.id && 10,
@@ -79,7 +79,11 @@ const Carousel = ({ mobile }) => {
 
   return (
     <Box p={mobile ? '20px' : '90px'} bgcolor='background.paper'>
-      <StyledText type='h2' value={'home.title1'} color='text.primary' />
+      <StyledText
+        type='h2'
+        value={'home.projects.title'}
+        color='text.primary'
+      />
       <Box
         display='flex'
         alignItems='center'
@@ -108,15 +112,18 @@ const CarouselItem = ({ item, currentSlide, mobile }) => {
   };
 
   return (
-    <CardActionArea sx={{ width: '100%', height: '100%' }}>
-      <CardContent
-        sx={{
-          background: `url(${getImage()}) center/contain no-repeat ${
-            mobile ? 'content-box' : ''
-          }`,
-          opacity: isCurrentSlide ? 1 : 0.5,
-        }}
-      >
+    <CardActionArea
+      sx={{
+        width: '100%',
+        height: '100%',
+        background: `url(${getImage()}) center/contain no-repeat ${
+          mobile ? 'content-box' : 'content-box'
+        }`,
+        opacity: isCurrentSlide ? 1 : 0.5,
+        p: '6%',
+      }}
+    >
+      <CardContent sx={{}}>
         <StyledText text={item.title} type='h4' weight='bold' />
         <StyledText
           type='h5'
