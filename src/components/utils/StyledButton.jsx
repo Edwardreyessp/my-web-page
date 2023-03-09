@@ -2,7 +2,7 @@ import { Button } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useMyTheme } from '../../hooks/Palette';
 
-export const StyledButton = ({ value, onClick, color, variant }) => {
+const StyledButton = ({ value, onClick, color, variant }) => {
   const [t] = useTranslation('global');
   const { myFont } = useMyTheme();
 
@@ -17,3 +17,5 @@ export const StyledButton = ({ value, onClick, color, variant }) => {
     </Button>
   );
 };
+
+export default StyledButton;

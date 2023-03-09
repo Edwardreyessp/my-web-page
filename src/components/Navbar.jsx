@@ -12,10 +12,10 @@ import {
   ThemeProvider,
 } from '@mui/material';
 import { useState } from 'react';
-import { useMyTheme } from '../hooks/Palette';
-import { useTranslation } from 'react-i18next';
 import StyledIcon from './utils/StyledIcon';
 import StyledText from './utils/StyledText';
+import { useMyTheme } from '../hooks/Palette';
+import { useTranslation } from 'react-i18next';
 import { US, MX } from 'country-flag-icons/react/3x2';
 
 const Navbar = () => {

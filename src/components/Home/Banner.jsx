@@ -1,9 +1,9 @@
 import { Box, Stack } from '@mui/material';
 import StyledText from '../utils/StyledText';
-import persona from '../../assets/persona.png';
 import StyledIcon from '../utils/StyledIcon';
+import persona from '../../assets/persona.png';
+import StyledButton from '../utils/StyledButton';
 import { useMyTheme } from '../../hooks/Palette';
-import { StyledButton } from '../utils/StyledButton';
 
 const Banner = () => {
   const { myTheme } = useMyTheme();
