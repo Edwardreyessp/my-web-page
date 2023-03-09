@@ -9,6 +9,7 @@ import {
   faGithub,
   faAndroid,
 } from '@fortawesome/free-brands-svg-icons';
+import { IconButton } from '@mui/material';
 import { useMyTheme } from '../../hooks/Palette';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import MailRoundedIcon from '@mui/icons-material/MailRounded';
@@ -17,7 +18,6 @@ import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import AnchorOutlinedIcon from '@mui/icons-material/AnchorOutlined';
-import { IconButton, useMediaQuery, useTheme } from '@mui/material';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
@@ -26,18 +26,18 @@ import NavigateNextRoundedIcon from '@mui/icons-material/NavigateNextRounded';
 import ImportContactsRoundedIcon from '@mui/icons-material/ImportContactsRounded';
 import NavigateBeforeRoundedIcon from '@mui/icons-material/NavigateBeforeRounded';
 
-export const StyledIcon = ({ icon = 'menu', color, onClick }) => {
+const StyledIcon = ({ icon, color, onClick }) => {
   const { myFont, myTheme } = useMyTheme();
-  const mobile = useMediaQuery(useTheme().breakpoints.down('sm'));
 
   const styleIcon = {
-    fontSize: icon === 'logo' ? myFont.logo : myFont.icon,
     color: color,
     cursor: 'pointer',
+    fontSize: myFont.buttonSize === 'small' ? '20px' : '30px',
   };
 
   const getColor = () => {
-    if (color === 'primary.contrastText') return myTheme.palette.text.primary;
+    if (color === 'primary.contrastText')
+      return myTheme.palette.primary.contrastText;
     return myTheme.palette.text.primary;
   };
 
@@ -45,7 +45,7 @@ export const StyledIcon = ({ icon = 'menu', color, onClick }) => {
     return (
       <FontAwesomeIcon
         icon={icon}
-        fontSize={mobile ? '20px' : '30px'}
+        fontSize={myFont.buttonSize === 'small' ? '20px' : '30px'}
         color={getColor()}
         cursor={onClick && 'pointer'}
       />
@@ -79,7 +79,8 @@ export const StyledIcon = ({ icon = 'menu', color, onClick }) => {
 
   if (onClick) {
     return <IconButton onClick={onClick}>{getIcon()}</IconButton>;
-  } else {
-    return getIcon();
   }
+  return getIcon();
 };
+
+export default StyledIcon;

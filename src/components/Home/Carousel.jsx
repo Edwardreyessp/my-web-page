@@ -1,14 +1,14 @@
 import { useState } from 'react';
-import { StyledIcon } from '../utils/StyledIcon';
-import { StyledText } from '../utils/StyledText';
+import StyledIcon from '../utils/StyledIcon';
+import StyledText from '../utils/StyledText';
+import StyledButton from '../utils/StyledButton';
 import { useMyTheme } from '../../hooks/Palette';
-import { StyledButton } from '../utils/StyledButton';
 import Apperro from '../../assets/images/apperro.svg';
 import Apperro2 from '../../assets/images/apperro2.svg';
 import { useSpringCarousel } from 'react-spring-carousel';
-import { Box, Card, CardActionArea, CardContent } from '@mui/material';
+import { Box, Card, CardActionArea, CardContent, Stack } from '@mui/material';
 
-const Carousel = ({ mobile }) => {
+const Carousel = () => {
   const mockItems = [
     { id: 'apperro', title: 'Apperro', image: Apperro, image2: Apperro2 },
     {
@@ -25,7 +25,7 @@ const Carousel = ({ mobile }) => {
     },
   ];
   const [currentSlide, setCurrentSlide] = useState(mockItems[0].id);
-  const { myTheme } = useMyTheme();
+  const { myTheme, myFont } = useMyTheme();
 
   const {
     carouselFragment,
@@ -36,19 +36,15 @@ const Carousel = ({ mobile }) => {
     itemsPerSlide: 3, // number of slides per view
     withLoop: true, // will loop
     initialStartingPosition: 'center', // the active slide will be at the center
-    gutter: mobile ? 5 : 24, // to add the space between slides
-    startEndGutter: mobile ? 0 : 80, // to add the space between slides
+    gutter: myFont.buttonSize === 'small' ? 5 : 24, // to add the space between slides
+    startEndGutter: myFont.buttonSize === 'small' ? 0 : 80, // to add the space between slides
     items: mockItems.map(item => {
       return {
         ...item,
         renderItem: (
           <Card
             sx={{
-              width: '100%',
-              minWidth: '92px',
-              aspectRatio: mobile ? '0.4' : '2',
-              display: 'grid',
-              placeItems: 'center',
+              aspectRatio: { xs: 2, md: '2' },
               zIndex: currentSlide === item.id && 1,
               transition: 'all 0.7s',
               transform: currentSlide === item.id && 'scale(1.5)',
@@ -60,11 +56,7 @@ const Carousel = ({ mobile }) => {
                   : myTheme.palette.primary.main,
             }}
           >
-            <CarouselItem
-              item={item}
-              currentSlide={currentSlide}
-              mobile={mobile}
-            />
+            <CarouselItem item={item} currentSlide={currentSlide} />
           </Card>
         ),
       };
@@ -78,32 +70,29 @@ const Carousel = ({ mobile }) => {
   });
 
   return (
-    <Box p={mobile ? '20px' : '90px'} bgcolor='background.paper'>
-      <StyledText
-        type='h2'
-        value={'home.projects.title'}
-        color='text.primary'
-      />
-      <Box
-        display='flex'
-        alignItems='center'
-        justifyContent='space-between'
-        py={mobile ? '20%' : '6%'}
-      >
-        <StyledIcon icon='prev' onClick={slideToPrevItem} />
-        <Box width={'100%'} sx={{ overflowX: 'clip' }}>
-          {carouselFragment}
+    <Stack
+      justifyContent='center'
+      alignItems='center'
+      py='4%'
+      width='100%'
+      bgcolor='background.paper'
+    >
+      <Stack width='95%' spacing={9}>
+        <StyledText variant='h2' value={'home.projects.title'} />
+        <Box display='flex' alignItems='center' justifyContent='space-between'>
+          <StyledIcon icon='prev' onClick={slideToPrevItem} />
+          <Box sx={{ overflowX: 'clip' }}>{carouselFragment}</Box>
+          <StyledIcon icon='next' onClick={slideToNextItem} />
         </Box>
-        <StyledIcon icon='next' onClick={slideToNextItem} />
-      </Box>
-      <Box width='100%' display='flex' justifyContent='center'>
-        <StyledButton value='home.projects.button' />
-      </Box>
-    </Box>
+        <Stack alignItems='center'>
+          <StyledButton value='home.projects.button' />
+        </Stack>
+      </Stack>
+    </Stack>
   );
 };
 
-const CarouselItem = ({ item, currentSlide, mobile }) => {
+const CarouselItem = ({ item, currentSlide }) => {
   const isCurrentSlide = currentSlide === item.id;
 
   const getImage = () => {
@@ -116,18 +105,16 @@ const CarouselItem = ({ item, currentSlide, mobile }) => {
       sx={{
         width: '100%',
         height: '100%',
-        background: `url(${getImage()}) center/contain no-repeat ${
-          mobile ? 'content-box' : 'content-box'
-        }`,
+        background: `url(${getImage()}) center/contain no-repeat content-box`,
         opacity: isCurrentSlide ? 1 : 0.5,
         p: '6%',
       }}
     >
-      <CardContent>
-        <StyledText text={item.title} type='h4' weight='bold' />
+      <CardContent sx={{ textAlign: 'center' }}>
+        <StyledText text={item.title} variant='body2' weight='bold' />
         <StyledText
-          type='h5'
-          color={'text.secondary'}
+          variant='caption'
+          color='text.secondary'
           value={`home.projects.${item.id}.description`}
         />
       </CardContent>
