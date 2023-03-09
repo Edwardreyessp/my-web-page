@@ -8,7 +8,7 @@ import Json from '../../assets/icons/json.svg';
 import Sass from '../../assets/icons/sass.svg';
 import Yarn from '../../assets/icons/yarn.svg';
 import Figma from '../../assets/icons/figma.svg';
-import { StyledText } from '../utils/StyledText';
+import StyledText from '../utils/StyledText';
 import { useMyTheme } from '../../hooks/Palette';
 import Github from '../../assets/icons/github.svg';
 import Js from '../../assets/icons/javascript.svg';

@@ -12,16 +12,48 @@ export const useMyTheme = () => {
 };
 
 export const MyThemeProvider = ({ children }) => {
-  const defaultTheme = useTheme();
-  const desktop = useMediaQuery(defaultTheme.breakpoints.up('md'));
-  const tablet = useMediaQuery(defaultTheme.breakpoints.up('sm'));
-  const mobile = useMediaQuery(defaultTheme.breakpoints.up('xs'));
+  const desktop = useMediaQuery(useTheme().breakpoints.up('md'));
+  const tablet = useMediaQuery(useTheme().breakpoints.up('sm'));
+  const mobile = useMediaQuery(useTheme().breakpoints.up('xs'));
   const [darkTheme, setDarkTheme] = useState(false);
 
   const getButtonSize = () => {
     if (desktop) return 'large';
     if (tablet) return 'medium';
     if (mobile) return 'small';
+  };
+
+  const getFontSize = () => {
+    if (desktop) {
+      return {
+        h1: { fontSize: '48px', fontWeight: 700 },
+        h2: { fontSize: '36px', fontWeight: 700 },
+        h3: { fontSize: '24px', fontWeight: 700 },
+        body1: { fontSize: '32px', fontWeight: 400 },
+        body2: { fontSize: '20px', fontWeight: 400 },
+        caption: { fontSize: '16px', fontWeight: 400 },
+      };
+    }
+    if (tablet) {
+      return {
+        h1: { fontSize: '32px', fontWeight: 700 },
+        h2: { fontSize: '24px', fontWeight: 700 },
+        h3: { fontSize: '20px', fontWeight: 700 },
+        body1: { fontSize: '20px', fontWeight: 400 },
+        body2: { fontSize: '16px', fontWeight: 400 },
+        caption: { fontSize: '12px', fontWeight: 400 },
+      };
+    }
+    if (mobile) {
+      return {
+        h1: { fontSize: '24px', fontWeight: 700 },
+        h2: { fontSize: '20px', fontWeight: 700 },
+        h3: { fontSize: '16px', fontWeight: 700 },
+        body1: { fontSize: '16px', fontWeight: 400 },
+        body2: { fontSize: '14px', fontWeight: 400 },
+        caption: { fontSize: '10px', fontWeight: 400 },
+      };
+    }
   };
 
   const getCurrentTheme = () => {
@@ -53,6 +85,9 @@ export const MyThemeProvider = ({ children }) => {
               'linear-gradient(to right, #0a1f2e, #0d2e42, #0f3d58, #0e4d6e, #085e85)',
           },
         },
+        typography: {
+          ...getFontSize(),
+        },
       });
     } else {
       return createTheme({
@@ -83,6 +118,9 @@ export const MyThemeProvider = ({ children }) => {
             paper2: '#f5f5f5',
           },
         },
+        typography: {
+          ...getFontSize(),
+        },
       });
     }
   };
@@ -90,14 +128,9 @@ export const MyThemeProvider = ({ children }) => {
   const myTheme = getCurrentTheme();
 
   const myFont = {
-    title: { lg: 48, xs: 24 },
-    subtitle: { lg: 32, xs: 20 },
-    subtitle2: { lg: 20, xs: 14 },
-    body: { lg: 16, xs: 12 },
-    body2: { lg: 14, xs: 10 },
     icon: { lg: 30, xs: 20 },
     logo: { lg: 48, xs: 30 },
-    button: getButtonSize(),
+    buttonSize: getButtonSize(),
   };
 
   return (

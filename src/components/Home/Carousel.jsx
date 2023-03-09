@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { StyledIcon } from '../utils/StyledIcon';
-import { StyledText } from '../utils/StyledText';
+import StyledIcon from '../utils/StyledIcon';
+import StyledText from '../utils/StyledText';
 import { useMyTheme } from '../../hooks/Palette';
 import { StyledButton } from '../utils/StyledButton';
 import Apperro from '../../assets/images/apperro.svg';

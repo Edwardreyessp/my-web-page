@@ -17,8 +17,8 @@ const Home = () => {
   return (
     <ThemeProvider theme={myTheme}>
       <Banner />
-      {/* <Carousel mobile={mobile} />
-      {!darkTheme && <Divider />}
+      {/* <Carousel mobile={mobile} /> */}
+      {/* {!darkTheme && <Divider />}
       <Technology mobile={mobile} /> */}
     </ThemeProvider>
   );

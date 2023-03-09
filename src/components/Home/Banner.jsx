@@ -1,11 +1,9 @@
-import persona from '../../assets/persona.png';
-import { StyledIcon } from '../utils/StyledIcon';
-import { useMyTheme } from '../../hooks/Palette';
-import { StyledText } from '../utils/StyledText';
-import { StyledButton } from '../utils/StyledButton';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Box, Stack } from '@mui/material';
+import StyledText from '../utils/StyledText';
+import persona from '../../assets/persona.png';
+import StyledIcon from '../utils/StyledIcon';
+import { useMyTheme } from '../../hooks/Palette';
+import { StyledButton } from '../utils/StyledButton';
 
 const Banner = () => {
   const { myTheme } = useMyTheme();
@@ -47,16 +45,9 @@ const Banner = () => {
 };
 
 const BannerIcons = () => {
-  const { myTheme, myFont } = useMyTheme();
-
   return (
     <>
-      <FontAwesomeIcon
-        icon={faGithub}
-        fontSize={myFont.button === 'small' ? '20px' : '30px'}
-        color={myTheme.palette.primary.contrastText}
-        cursor='pointer'
-      />
+      <StyledIcon icon='github' color='primary.contrastText' />
       <StyledIcon icon='email' color='primary.contrastText' />
     </>
   );
@@ -68,14 +59,19 @@ const BannerDescription = () => {
       <Stack>
         <StyledText
           value='home.banner.title'
-          type='h1'
+          variant='h1'
           color='primary.contrastText'
         />
-        <StyledText value='home.banner.subtitle' type='h3' color='secondary' />
+        <StyledText
+          value='home.banner.subtitle'
+          variant='body2'
+          weight='bold'
+          color='secondary'
+        />
       </Stack>
       <StyledText
         value='home.banner.body'
-        type='h4'
+        variant='body2'
         color='primary.contrastText'
       />
       <Box

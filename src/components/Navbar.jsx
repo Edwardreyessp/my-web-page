@@ -8,13 +8,14 @@ import {
   ListItemIcon,
   Menu,
   MenuItem,
+  Stack,
   ThemeProvider,
 } from '@mui/material';
 import { useState } from 'react';
 import { useMyTheme } from '../hooks/Palette';
 import { useTranslation } from 'react-i18next';
-import { StyledIcon } from './utils/StyledIcon';
-import { StyledText } from './utils/StyledText';
+import StyledIcon from './utils/StyledIcon';
+import StyledText from './utils/StyledText';
 import { US, MX } from 'country-flag-icons/react/3x2';
 
 const Navbar = () => {
@@ -133,16 +134,20 @@ const Navbar = () => {
               anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
               <MenuItem onClick={() => changeLanguage('en')}>
-                <Box width={22} height={22} mr='10px'>
-                  <US title='United States' />
+                <Box display='flex' alignItems='center' gap={2}>
+                  <Stack width={22} height={22} justifyContent='center'>
+                    <US title='United States' />
+                  </Stack>
+                  <StyledText variant='body2' text='English' />
                 </Box>
-                English
               </MenuItem>
               <MenuItem onClick={() => changeLanguage('es')}>
-                <Box width={22} height={22} mr='10px'>
-                  <MX title='United States' />
+                <Box display='flex' alignItems='center' gap={2}>
+                  <Stack width={22} height={22} justifyContent='center'>
+                    <MX title='United States' />
+                  </Stack>
+                  <StyledText variant='body2' text='Español' />
                 </Box>
-                Español
               </MenuItem>
             </Menu>
           </Box>
@@ -185,7 +190,7 @@ const ListDrawer = ({ toggleDrawer }) => {
                 <ListItemIcon>
                   <StyledIcon icon={item.icon} />
                 </ListItemIcon>
-                <StyledText value={item.text} />
+                <StyledText variant='body2' value={item.text} />
               </ListItemButton>
             </ListItem>
             <Divider />
