@@ -22,7 +22,8 @@
         "description": "Sistema de gestión de inventario para una empresa de venta de productos de limpieza."
       },
       "button": "Conócelos todos"
-    }
+    },
+    "technology": "Tecnologías que manejo"
   },
   "navbar": {
     "home": "Inicio",

@@ -8,7 +8,7 @@ import Apperro2 from '../../assets/images/apperro2.svg';
 import { useSpringCarousel } from 'react-spring-carousel';
 import { Box, Card, CardActionArea, CardContent, Stack } from '@mui/material';
 
-const Carousel = ({ mobile }) => {
+const Carousel = () => {
   const mockItems = [
     { id: 'apperro', title: 'Apperro', image: Apperro, image2: Apperro2 },
     {
@@ -25,7 +25,7 @@ const Carousel = ({ mobile }) => {
     },
   ];
   const [currentSlide, setCurrentSlide] = useState(mockItems[0].id);
-  const { myTheme } = useMyTheme();
+  const { myTheme, myFont } = useMyTheme();
 
   const {
     carouselFragment,
@@ -36,8 +36,8 @@ const Carousel = ({ mobile }) => {
     itemsPerSlide: 3, // number of slides per view
     withLoop: true, // will loop
     initialStartingPosition: 'center', // the active slide will be at the center
-    gutter: mobile ? 5 : 24, // to add the space between slides
-    startEndGutter: mobile ? 0 : 80, // to add the space between slides
+    gutter: myFont.buttonSize === 'small' ? 5 : 24, // to add the space between slides
+    startEndGutter: myFont.buttonSize === 'small' ? 0 : 80, // to add the space between slides
     items: mockItems.map(item => {
       return {
         ...item,

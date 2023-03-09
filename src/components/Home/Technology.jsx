@@ -1,14 +1,14 @@
-import { Box, Tooltip } from '@mui/material';
+import { Box, Stack, Tooltip } from '@mui/material';
 import Css from '../../assets/icons/css.svg';
 import Git from '../../assets/icons/git.svg';
 import Npm from '../../assets/icons/npm.svg';
+import StyledText from '../utils/StyledText';
 import Dart from '../../assets/icons/dart.svg';
 import Html from '../../assets/icons/html.svg';
 import Json from '../../assets/icons/json.svg';
 import Sass from '../../assets/icons/sass.svg';
 import Yarn from '../../assets/icons/yarn.svg';
 import Figma from '../../assets/icons/figma.svg';
-import StyledText from '../utils/StyledText';
 import { useMyTheme } from '../../hooks/Palette';
 import Github from '../../assets/icons/github.svg';
 import Js from '../../assets/icons/javascript.svg';
@@ -18,37 +18,35 @@ import ReactLogo from '../../assets/icons/react.svg';
 import Firebase from '../../assets/icons/firebase.svg';
 import GithubDark from '../../assets/icons/githubdarkmode.svg';
 
-const Technology = ({ mobile }) => {
+const Technology = () => {
   return (
-    <Box p={mobile ? '20px' : '90px'} bgcolor='background.paper2'>
-      <StyledText
-        text='Tecnologías que manejo'
-        type='h2'
-        color='text.primary'
-      />
-      <Box
-        display='grid'
-        gridTemplateColumns='repeat(5, 1fr)'
-        gap={mobile ? '0' : '6%'}
-        sx={{ my: '2%', placeItems: 'center' }}
-      >
-        <ImageBrand brand='firebase' />
-        <ImageBrand brand='css' />
-        <ImageBrand brand='git' />
-        <ImageBrand brand='github' />
-        <ImageBrand brand='html' />
-        <ImageBrand brand='js' />
-        <ImageBrand brand='react' />
-        <ImageBrand brand='sass' />
-        <ImageBrand brand='dart' />
-        <ImageBrand brand='flutter' />
-        <ImageBrand brand='figma' />
-        <ImageBrand brand='json' />
-        <ImageBrand brand='npm' />
-        <ImageBrand brand='yarn' />
-        <ImageBrand brand='visual' />
+    <Stack width='100%' alignItems='center' py='4%' bgcolor='background.paper2'>
+      <Box width='95%'>
+        <StyledText value='home.technology' variant='h2' />
+        <Box
+          display='grid'
+          gridTemplateColumns='repeat(5, 1fr)'
+          gap={{ xs: '0', md: '10%' }}
+          sx={{ my: { xs: '0', md: '4%' }, placeItems: 'center' }}
+        >
+          <ImageBrand brand='firebase' />
+          <ImageBrand brand='css' />
+          <ImageBrand brand='git' />
+          <ImageBrand brand='github' />
+          <ImageBrand brand='html' />
+          <ImageBrand brand='js' />
+          <ImageBrand brand='react' />
+          <ImageBrand brand='sass' />
+          <ImageBrand brand='dart' />
+          <ImageBrand brand='flutter' />
+          <ImageBrand brand='figma' />
+          <ImageBrand brand='json' />
+          <ImageBrand brand='npm' />
+          <ImageBrand brand='yarn' />
+          <ImageBrand brand='visual' />
+        </Box>
       </Box>
-    </Box>
+    </Stack>
   );
 };
 
@@ -78,7 +76,6 @@ const ImageBrand = ({ brand }) => {
       <Box
         width='50%'
         height='100px'
-        my='2%'
         sx={{ background: `url(${getImage()}) center/contain no-repeat` }}
       ></Box>
     </Tooltip>
