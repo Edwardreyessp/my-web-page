@@ -5,116 +5,108 @@ import { StyledText } from '../utils/StyledText';
 import { StyledButton } from '../utils/StyledButton';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Box, Grid, Stack, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 
 const Banner = () => {
-  const defaultTheme = useTheme();
-  const { myTheme, darkTheme } = useMyTheme();
-  const mobile = useMediaQuery(defaultTheme.breakpoints.down('sm'));
+  const { myTheme } = useMyTheme();
 
   return (
-    <Box
-      height='100vh'
-      maxHeight='calc(100vh - 108px)'
-      p='108px 30px 0 30px'
+    <Stack
+      alignItems='center'
+      width='100vw'
+      maxWidth='100%'
+      pt='108px'
       sx={{ background: myTheme.palette.background.default }}
     >
-      <Grid container height='100%'>
-        <Grid
-          item
-          xs={1}
-          container
-          justifyContent='flex-end'
-          direction='column'
+      <Box
+        display='flex'
+        alignItems='flex-end'
+        maxWidth={{ xs: '90%', md: '95%' }}
+        pb={{ xs: '30px', md: '0' }}
+        gap={{ xs: 2, md: 0 }}
+      >
+        <Stack spacing={{ xs: 2, md: 4 }} mb={{ xs: 0, md: 4 }}>
+          <BannerIcons />
+        </Stack>
+        <Box
+          display='flex'
+          flexDirection={{ xs: 'column-reverse', md: 'row' }}
+          alignItems={{ xs: 'space-around', md: 'center' }}
+          justifyContent={{ xs: 'center', md: 'space-around' }}
         >
-          <BannerSocial myTheme={myTheme} mobile={mobile} />
-        </Grid>
-        <Grid
-          item
-          xs={10}
-          container
-          direction={{ xs: 'column', sm: 'row-reverse' }}
-        >
-          <Grid
-            item
-            xs={1}
-            sm={6}
-            container
-            alignItems='flex-end'
-            justifyContent='center'
-          >
-            <img
-              src={persona}
-              alt={'Me'}
-              loading='lazy'
-              style={{
-                width: '800px',
-                maxWidth: '100%',
-                marginBottom: mobile && '14px',
-                filter: darkTheme ? 'grayscale(100%)' : 'hue-rotate(0deg)',
-              }}
-            />
-          </Grid>
-          <Grid item xs={1} sm={6} container alignItems='center'>
-            <BannerDescription mobile={mobile} />
-          </Grid>
-        </Grid>
-      </Grid>
-    </Box>
-  );
-};
-
-const BannerSocial = ({ myTheme, mobile }) => {
-  return (
-    <Stack spacing={2} mb='30px'>
-      <Box>
-        <FontAwesomeIcon
-          icon={faGithub}
-          fontSize={mobile ? '20px' : '30px'}
-          color={myTheme.palette.primary.contrastText}
-          cursor='pointer'
-        />
+          <Stack spacing={4} maxWidth={{ xs: '90%', md: '40%' }}>
+            <BannerDescription />
+          </Stack>
+          <Box width={{ xs: '90%', md: '40%' }}>
+            <BannerImage />
+          </Box>
+        </Box>
       </Box>
-      <StyledIcon icon='email' color='primary.contrastText' />
     </Stack>
   );
 };
 
-const BannerDescription = ({ mobile }) => {
+const BannerIcons = () => {
+  const { myTheme, myFont } = useMyTheme();
+
   return (
-    <Stack justifyContent={mobile && 'center'}>
-      <StyledText
-        value='home.banner.title'
-        type='h1'
-        color='primary.contrastText'
+    <>
+      <FontAwesomeIcon
+        icon={faGithub}
+        fontSize={myFont.button === 'small' ? '20px' : '30px'}
+        color={myTheme.palette.primary.contrastText}
+        cursor='pointer'
       />
-      <StyledText
-        value='home.banner.subtitle'
-        type='h3'
-        color='secondary'
-        mb='40px'
-      />
+      <StyledIcon icon='email' color='primary.contrastText' />
+    </>
+  );
+};
+
+const BannerDescription = () => {
+  return (
+    <>
+      <Stack>
+        <StyledText
+          value='home.banner.title'
+          type='h1'
+          color='primary.contrastText'
+        />
+        <StyledText value='home.banner.subtitle' type='h3' color='secondary' />
+      </Stack>
       <StyledText
         value='home.banner.body'
         type='h4'
         color='primary.contrastText'
-        mb='20px'
       />
-      <BannerButtons mobile={mobile} />
-    </Stack>
+      <Box
+        display='flex'
+        gap={4}
+        justifyContent={{ xs: 'center', md: 'flex-start' }}
+      >
+        <StyledButton value='home.banner.button-contact' color='secondary' />
+        <StyledButton
+          value='home.banner.button-projects'
+          variant='outlined'
+          color='secondary'
+        />
+      </Box>
+    </>
   );
 };
 
-const BannerButtons = ({ mobile }) => {
+const BannerImage = () => {
+  const { darkTheme } = useMyTheme();
+
   return (
-    <Box display='flex' justifyContent={mobile && 'space-around'} gap='20px'>
-      <StyledButton value='home.banner.button-contact' color='secondary' />
-      <StyledButton
-        value='home.banner.button-projects'
-        variant='outlined'
-        color='secondary'
-      />
-    </Box>
+    <img
+      src={persona}
+      alt={'Me'}
+      loading='lazy'
+      style={{
+        width: '100%',
+        filter: darkTheme ? 'grayscale(100%)' : 'hue-rotate(0deg)',
+      }}
+    />
   );
 };
 

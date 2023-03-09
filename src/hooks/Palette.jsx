@@ -46,6 +46,11 @@ export const MyThemeProvider = ({ children }) => {
               'linear-gradient(to right, #0a1f2e, #0d2e42, #0f3d58, #0e4d6e, #085e85)',
             paper: '#1b2831',
             paper2: '#192229',
+            primary: '#0a1f2e',
+          },
+          text: {
+            banner:
+              'linear-gradient(to right, #0a1f2e, #0d2e42, #0f3d58, #0e4d6e, #085e85)',
           },
         },
       });
@@ -75,6 +80,7 @@ export const MyThemeProvider = ({ children }) => {
             default:
               'linear-gradient(to right, #113b58, #144d71, #155f8a, #1473a4, #0c87bf)',
             paper: '#fff',
+            paper2: '#f5f5f5',
           },
         },
       });
